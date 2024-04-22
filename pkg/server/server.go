@@ -5,10 +5,11 @@ import (
 	"net/http"
 )
 
-func Server(target string, preservePath bool) error {
+func Server(baseTarget string, preservePath bool) error {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		target := baseTarget
 		if preservePath {
-			target = fmt.Sprintf("%s%s", target, r.URL.Path)
+			target = fmt.Sprintf("%s%s", baseTarget, r.URL.Path)
 		}
 		http.Redirect(w, r, target, http.StatusTemporaryRedirect)
 	})
