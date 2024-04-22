@@ -9,6 +9,7 @@ import (
 )
 
 var FlagTarget string
+var PreservePath bool
 
 var Cmd = &cobra.Command{
 	Use:     "all",
@@ -16,7 +17,7 @@ var Cmd = &cobra.Command{
 	Aliases: []string{"s"},
 	Args:    cobra.NoArgs,
 	Run: func(c *cobra.Command, args []string) {
-		err := server.Server(FlagTarget)
+		err := server.Server(FlagTarget, PreservePath)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -33,4 +34,11 @@ func init() {
 		"Redirect target (eg.: https://google.com)",
 	)
 	Cmd.MarkPersistentFlagRequired("target")
+	Cmd.PersistentFlags().BoolVarP(
+		&PreservePath,
+		"preserve-path",
+		"p",
+		false,
+		"Preserve path",
+	)
 }
