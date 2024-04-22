@@ -75,6 +75,7 @@ dockers:
       goarch: amd64
       image_templates:
         - "sikalabs/redirect-server:{{ .Tag }}"
+        - "ghcr.io/sikalabs/redirect-server:{{ .Tag }}"
       dockerfile: Dockerfile.goreleaser
       ids:
         - redirect-server
@@ -94,6 +95,7 @@ dockers:
       goarch: arm64
       image_templates:
         - "sikalabs/redirect-server:{{ .Tag }}-arm64v8"
+        - "ghcr.io/sikalabs/redirect-server:{{ .Tag }}-arm64v8"
       dockerfile: Dockerfile.goreleaser.arm64v8
       ids:
         - redirect-server
